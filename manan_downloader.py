@@ -28,12 +28,15 @@ if not os.path.exists(download_path):
     os.makedirs(download_path)
 
 # ---------- Download Function ----------
-def download_video(url):
+def download_video(url, limit=None):
     try:
         ydl_opts = {
             'outtmpl': os.path.join(download_path, '%(title)s.%(ext)s'),
             'format': 'best'
         }
+        if limit is not None:
+            ydl_opts['playlistend'] = limit
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
         print(colored("✅ Download Complete!", "green"))
@@ -52,17 +55,15 @@ def menu():
 
         choice = input(colored("Select option: ", "yellow"))
 
-        if choice == "1":
-            url = input(colored("Enter TikTok URL: ", "yellow"))
-            download_video(url)
-            input(colored("Press Enter to return to menu...", "cyan"))
-        elif choice == "2":
-            url = input(colored("Enter Facebook URL: ", "yellow"))
-            download_video(url)
-            input(colored("Press Enter to return to menu...", "cyan"))
-        elif choice == "3":
-            url = input(colored("Enter YouTube Shorts URL: ", "yellow"))
-            download_video(url)
+        if choice in ["1", "2", "3"]:
+            url = input(colored("Enter URL: ", "yellow"))
+            try:
+                qty = int(input(colored("How many videos to download? (0 = All): ", "yellow")))
+                limit = None if qty == 0 else qty
+            except ValueError:
+                print(colored("❌ Invalid number! Defaulting to all videos.", "red"))
+                limit = None
+            download_video(url, limit)
             input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "4":
             print(colored("👋 Exiting...", "red"))
