@@ -17,7 +17,7 @@ def gradient_text(text, colors):
         result += colors[i % len(colors)] + char
     return result + Style.RESET_ALL
 
-# ---------- Banner with White Border ----------
+# ---------- Banner with Border around Logo ----------
 def banner():
     os.system("clear")
 
@@ -29,21 +29,18 @@ def banner():
     manan_text = pyfiglet.figlet_format("MANAN", font="banner3-D")
     automation_text = pyfiglet.figlet_format("AUTOMATION", font="banner3-D")
 
-    # Combine both texts
-    combined_text = gradient_text(manan_text, colors1) + gradient_text(automation_text, colors2)
-    lines = combined_text.split("\n")
+    # Apply gradient colors
+    manan_colored = gradient_text(manan_text, colors1)
+    automation_colored = gradient_text(automation_text, colors2)
 
-    # Calculate max width for border
-    max_width = max(len(line) for line in lines)
+    # Combine logo lines
+    logo_lines = (manan_colored + automation_colored).split("\n")
+    max_width = max(len(line) for line in logo_lines)
 
-    # Print top border
+    # Draw border just around logo
     print(Fore.WHITE + "╔" + "═" * max_width + "╗")
-
-    # Print each line inside border
-    for line in lines:
+    for line in logo_lines:
         print(Fore.WHITE + "║" + line.ljust(max_width) + Fore.WHITE + "║")
-
-    # Print bottom border
     print(Fore.WHITE + "╚" + "═" * max_width + "╝\n")
 
 # ---------- Password Check ----------
