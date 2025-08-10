@@ -3,14 +3,16 @@ import sys
 import time
 import yt_dlp
 from termcolor import colored
-import pyfiglet  # For big bold banner text
+import pyfiglet
 
-# ---------- Banner Function ----------
+# ---------- Banner ----------
 def banner():
     os.system("clear")
-    big_banner = pyfiglet.figlet_format("MANAN\nAUTOMATION", font="slant", justify="center")
-    print(colored(big_banner, "white"))  # Big bold white text
-    print(colored("=" * 50, "cyan"))
+    title1 = pyfiglet.figlet_format("MANAN", font="big")
+    title2 = pyfiglet.figlet_format("AUTOMATION", font="big")
+    print(colored(title1.strip(), "white", attrs=["bold"]))
+    print(colored(title2.strip(), "white", attrs=["bold"]))
+    print()
 
 # ---------- Password Check ----------
 def password_check():
@@ -28,15 +30,15 @@ if not os.path.exists(download_path):
     os.makedirs(download_path)
 
 # ---------- Download Function ----------
-def download_video(url, limit):
+def download_video(url, limit=None):
     try:
         ydl_opts = {
             'outtmpl': os.path.join(download_path, '%(title)s.%(ext)s'),
             'format': 'best'
         }
-        if limit > 0:
-            ydl_opts['playlistend'] = limit  # Limit number of videos
-        # If limit = 0 → download all videos (no limit option added)
+        if limit is not None:
+            ydl_opts['playlistend'] = limit
+
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
         print(colored("✅ Download Complete!", "green"))
@@ -51,13 +53,18 @@ def menu():
         print(colored("[2] Download Facebook Video", "cyan"))
         print(colored("[3] Download YouTube Shorts", "cyan"))
         print(colored("[4] Exit", "cyan"))
-        print(colored("=" * 50, "cyan"))
+        print(colored("=" * 50, "white"))
 
-        choice = input(colored("Select option: ", "yellow"))
+        choice = input(colored("Select option: ", "cyan"))
 
         if choice in ["1", "2", "3"]:
-            url = input(colored("Enter Video URL: ", "yellow"))
-            limit = int(input(colored("How many videos to download? (0 for ALL): ", "yellow")))
+            url = input(colored("Enter URL: ", "yellow"))
+            try:
+                qty = int(input(colored("How many videos to download? (0 = All): ", "yellow")))
+                limit = None if qty == 0 else qty
+            except ValueError:
+                print(colored("❌ Invalid number! Defaulting to all videos.", "red"))
+                limit = None
             download_video(url, limit)
             input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "4":
