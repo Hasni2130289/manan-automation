@@ -3,12 +3,18 @@ import sys
 import time
 import yt_dlp
 from termcolor import colored
+import shutil
+
+# ---------- Center Text Function ----------
+def center_text(text):
+    width = shutil.get_terminal_size().columns
+    return text.center(width)
 
 # ---------- Banner ----------
 def banner():
     os.system("clear")
-    print(colored("       MANAN", "white", attrs=["bold"]))
-    print(colored("   AUTOMATION", "white", attrs=["bold"]))
+    print(colored(center_text("MANAN"), "white", attrs=["bold"]))
+    print(colored(center_text("AUTOMATION"), "white", attrs=["bold"]))
     print()
 
 # ---------- Password Check ----------
@@ -43,13 +49,13 @@ def download_video(url):
 def menu():
     while True:
         banner()
-        print(colored("[1] Download TikTok Video", "white", attrs=["bold"]))
-        print(colored("[2] Download Facebook Video", "white", attrs=["bold"]))
-        print(colored("[3] Download YouTube Shorts", "white", attrs=["bold"]))
-        print(colored("[4] Exit", "white", attrs=["bold"]))
-        print(colored("=" * 40, "white", attrs=["bold"]))
+        print(colored(center_text("[1] Download TikTok Video"), "white", attrs=["bold"]))
+        print(colored(center_text("[2] Download Facebook Video"), "white", attrs=["bold"]))
+        print(colored(center_text("[3] Download YouTube Shorts"), "white", attrs=["bold"]))
+        print(colored(center_text("[4] Exit"), "white", attrs=["bold"]))
+        print(colored(center_text("=" * 40), "white", attrs=["bold"]))
 
-        choice = input(colored("Select option: ", "white", attrs=["bold"]))
+        choice = input(colored(center_text("Select option: "), "white", attrs=["bold"]))
 
         if choice == "1":
             url = input(colored("Enter TikTok URL: ", "white", attrs=["bold"]))
