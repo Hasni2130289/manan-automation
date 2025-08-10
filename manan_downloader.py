@@ -25,9 +25,9 @@ def banner():
     colors1 = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
     colors2 = [Fore.MAGENTA, Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.YELLOW, Fore.RED]
 
-    # Create ASCII art
-    manan_text = pyfiglet.figlet_format("MANAN", font="block")
-    automation_text = pyfiglet.figlet_format("AUTOMATION", font="block")
+    # Create ASCII art using a bold, clear font
+    manan_text = pyfiglet.figlet_format("MANAN", font="banner3-D")
+    automation_text = pyfiglet.figlet_format("AUTOMATION", font="banner3-D")
 
     # Print with gradient
     print(gradient_text(manan_text, colors1))
