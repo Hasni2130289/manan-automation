@@ -3,21 +3,35 @@ import sys
 import time
 import yt_dlp
 from termcolor import colored
+import pyfiglet
+from colorama import Fore, Style, init
 
-# ---------- Rainbow Text Function ----------
-def rainbow(text):
-    colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta']
+# Initialize colorama
+init(autoreset=True)
+
+# ---------- Gradient Text Function ----------
+def gradient_text(text, colors):
+    """Apply gradient colors to ASCII art text."""
     result = ""
     for i, char in enumerate(text):
-        result += colored(char, colors[i % len(colors)])
-    return result
+        result += colors[i % len(colors)] + char
+    return result + Style.RESET_ALL
 
 # ---------- Banner ----------
 def banner():
     os.system("clear")
-    print(rainbow("=" * 50))
-    print(rainbow("      📥 MANAN DOWNLOADER 📥"))
-    print(rainbow("=" * 50))
+
+    # Gradient color patterns
+    colors1 = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
+    colors2 = [Fore.MAGENTA, Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.YELLOW, Fore.RED]
+
+    # Create ASCII art
+    manan_text = pyfiglet.figlet_format("MANAN", font="block")
+    automation_text = pyfiglet.figlet_format("AUTOMATION", font="block")
+
+    # Print with gradient
+    print(gradient_text(manan_text, colors1))
+    print(gradient_text(automation_text, colors2))
     print()
 
 # ---------- Password Check ----------
@@ -52,13 +66,12 @@ def download_video(url):
 def menu():
     while True:
         banner()
-        print(rainbow("[1] Download TikTok Video"))
-        print(rainbow("[2] Download Facebook Video"))
-        print(rainbow("[3] Download YouTube Shorts"))
-        print(rainbow("[4] Exit"))
-        print(rainbow("=" * 50))
+        print(Fore.GREEN + "[1] TikTok Download")
+        print(Fore.BLUE + "[2] Facebook Download")
+        print(Fore.RED + "[3] YouTube Shorts Download")
+        print(Fore.YELLOW + "[4] Exit" + Style.RESET_ALL)
 
-        choice = input(colored("Select option: ", "cyan"))
+        choice = input(colored("Choose an option [1-4]: ", "cyan"))
 
         if choice == "1":
             url = input(colored("Enter TikTok URL: ", "yellow"))
@@ -73,7 +86,7 @@ def menu():
             download_video(url)
             input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "4":
-            print(colored("👋 Exiting...", "red"))
+            print(colored("👋 Goodbye!", "red"))
             sys.exit()
         else:
             print(colored("❌ Invalid choice!", "red"))
