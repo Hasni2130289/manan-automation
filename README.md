@@ -10,18 +10,10 @@ A Termux-based video downloader for TikTok, Facebook, and YouTube Shorts with a 
 
 ## 🚀 How to Install in Termux
 
-```bash
-pkg update && pkg upgrade
-pkg install python ffmpeg -y
-pip install yt-dlp termcolor
-
-# Grant Storage Permission
-termux-setup-storage
-
-# Download Script
-wget https://raw.githubusercontent.com/Hasni2130289/manan_downloader.py/main/manan_downloader.py
-
-# Run Script
+pkg update && pkg upgrade -y
+pkg install python -y
+pip install yt-dlp termcolor pyfiglet
+pkg install git -y
+git clone https://github.com/Hasni2130289/manan-automation
+cd manan-automation
 python manan_downloader.py
-
-PASSWORD = "manan"
