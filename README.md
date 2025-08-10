@@ -1,22 +1,27 @@
-# Manan Downloader
+# 📥 Manan Downloader
 
-A simple Termux-based media downloader using `yt-dlp` with password protection.
+A Termux-based video downloader for TikTok, Facebook, and YouTube Shorts with a password-protected menu and rainbow banner.
 
 ## 📌 Features
+- Rainbow-style banner & menu
 - Password protection (`manan`)
-- Downloads videos directly to `/sdcard/Download`
-- Simple and fast
+- Saves videos to `/storage/emulated/0/MananDownloads`
+- Supports TikTok, Facebook, YouTube Shorts
 
----
-
-## ⚙️ Installation & Usage
+## 🚀 How to Install in Termux
 
 ```bash
-pkg update -y && pkg upgrade -y
-pkg install python curl -y
-pip install yt-dlp pyfiglet termcolor
+pkg update && pkg upgrade
+pkg install python ffmpeg -y
+pip install yt-dlp termcolor
+
+# Grant Storage Permission
 termux-setup-storage
-curl -O https://raw.githubusercontent.com/Hasni2130289/manan_downloader.py/main/manan_downloader.py
+
+# Download Script
+wget https://raw.githubusercontent.com/Hasni2130289/manan_downloader.py/main/manan_downloader.py
+
+# Run Script
 python manan_downloader.py
-# Password system
+
 PASSWORD = "manan"
