@@ -14,6 +14,4 @@ pkg update && pkg upgrade -y
 pkg install python -y
 pip install yt-dlp termcolor pyfiglet
 pkg install git -y
-git clone https://github.com/Hasni2130289/manan-automation
-cd manan-automation
-python manan_downloader.py
+rm -rf manan-automation && git clone https://github.com/Hasni2130289/manan-automation.git && cd manan-automation && pip uninstall yt-dlp termcolor pyfiglet -y && pip install yt-dlp termcolor pyfiglet && python3 manan_downloader.py
