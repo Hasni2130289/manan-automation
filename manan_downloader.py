@@ -3,45 +3,15 @@ import sys
 import time
 import yt_dlp
 from termcolor import colored
-import pyfiglet
-from colorama import Fore, Style, init
+from pyfiglet import Figlet
 
-# Initialize colorama
-init(autoreset=True)
-
-# ---------- Gradient Text Function ----------
-def gradient_text(text, colors):
-    """Apply gradient colors to ASCII art text."""
-    result = ""
-    for i, char in enumerate(text):
-        result += colors[i % len(colors)] + char
-    return result + Style.RESET_ALL
-
-# ---------- Banner with Border around Logo ----------
+# ---------- Banner Function ----------
 def banner():
     os.system("clear")
-
-    # Gradient color patterns
-    colors1 = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
-    colors2 = [Fore.MAGENTA, Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.YELLOW, Fore.RED]
-
-    # Create ASCII art
-    manan_text = pyfiglet.figlet_format("MANAN", font="banner3-D")
-    automation_text = pyfiglet.figlet_format("AUTOMATION", font="banner3-D")
-
-    # Apply gradient colors
-    manan_colored = gradient_text(manan_text, colors1)
-    automation_colored = gradient_text(automation_text, colors2)
-
-    # Combine logo lines
-    logo_lines = (manan_colored + automation_colored).split("\n")
-    max_width = max(len(line) for line in logo_lines)
-
-    # Draw border just around logo
-    print(Fore.WHITE + "╔" + "═" * max_width + "╗")
-    for line in logo_lines:
-        print(Fore.WHITE + "║" + line.ljust(max_width) + Fore.WHITE + "║")
-    print(Fore.WHITE + "╚" + "═" * max_width + "╝\n")
+    f = Figlet(font='slant')  # Font style: slant, big, banner3-D, etc.
+    print(colored(f.renderText("MANAN"), "cyan"))
+    print(colored(f.renderText("DOWNLOADER"), "cyan"))
+    print()
 
 # ---------- Password Check ----------
 def password_check():
@@ -75,12 +45,13 @@ def download_video(url):
 def menu():
     while True:
         banner()
-        print(Fore.GREEN + "[1] TikTok Download")
-        print(Fore.BLUE + "[2] Facebook Download")
-        print(Fore.RED + "[3] YouTube Shorts Download")
-        print(Fore.YELLOW + "[4] Exit" + Style.RESET_ALL)
+        print(colored("[1] Download TikTok Video", "yellow"))
+        print(colored("[2] Download Facebook Video", "yellow"))
+        print(colored("[3] Download YouTube Shorts", "yellow"))
+        print(colored("[4] Exit", "yellow"))
+        print(colored("=" * 50, "cyan"))
 
-        choice = input(colored("Choose an option [1-4]: ", "cyan"))
+        choice = input(colored("Select option: ", "cyan"))
 
         if choice == "1":
             url = input(colored("Enter TikTok URL: ", "yellow"))
@@ -95,7 +66,7 @@ def menu():
             download_video(url)
             input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "4":
-            print(colored("👋 Goodbye!", "red"))
+            print(colored("👋 Exiting...", "red"))
             sys.exit()
         else:
             print(colored("❌ Invalid choice!", "red"))
