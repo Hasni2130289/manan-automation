@@ -7,18 +7,18 @@ from termcolor import colored
 # ---------- Banner ----------
 def banner():
     os.system("clear")
-    print(colored("       MANAN", "cyan", attrs=["bold"]))
-    print(colored("   AUTOMATION", "cyan", attrs=["bold"]))
+    print(colored("       MANAN", "white", attrs=["bold"]))
+    print(colored("   AUTOMATION", "white", attrs=["bold"]))
     print()
 
 # ---------- Password Check ----------
 def password_check():
     correct_password = "manan"
-    pwd = input(colored("[?] Enter Password: ", "yellow", attrs=["bold"]))
+    pwd = input(colored("[?] Enter Password: ", "white", attrs=["bold"]))
     if pwd != correct_password:
-        print(colored("❌ Wrong password! Exiting...", "red", attrs=["bold"]))
+        print(colored("❌ Wrong password! Exiting...", "white", attrs=["bold"]))
         sys.exit()
-    print(colored("✅ Password Accepted!", "green", attrs=["bold"]))
+    print(colored("✅ Password Accepted!", "white", attrs=["bold"]))
     time.sleep(1)
 
 # ---------- Create Download Folder ----------
@@ -35,39 +35,39 @@ def download_video(url):
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print(colored("✅ Download Complete!", "green", attrs=["bold"]))
+        print(colored("✅ Download Complete!", "white", attrs=["bold"]))
     except Exception as e:
-        print(colored(f"❌ Error: {e}", "red", attrs=["bold"]))
+        print(colored(f"❌ Error: {e}", "white", attrs=["bold"]))
 
 # ---------- Menu ----------
 def menu():
     while True:
         banner()
-        print(colored("[1] Download TikTok Video", "yellow", attrs=["bold"]))
-        print(colored("[2] Download Facebook Video", "yellow", attrs=["bold"]))
-        print(colored("[3] Download YouTube Shorts", "yellow", attrs=["bold"]))
-        print(colored("[4] Exit", "yellow", attrs=["bold"]))
-        print(colored("=" * 40, "cyan"))
+        print(colored("[1] Download TikTok Video", "white", attrs=["bold"]))
+        print(colored("[2] Download Facebook Video", "white", attrs=["bold"]))
+        print(colored("[3] Download YouTube Shorts", "white", attrs=["bold"]))
+        print(colored("[4] Exit", "white", attrs=["bold"]))
+        print(colored("=" * 40, "white", attrs=["bold"]))
 
-        choice = input(colored("Select option: ", "cyan", attrs=["bold"]))
+        choice = input(colored("Select option: ", "white", attrs=["bold"]))
 
         if choice == "1":
-            url = input(colored("Enter TikTok URL: ", "yellow", attrs=["bold"]))
+            url = input(colored("Enter TikTok URL: ", "white", attrs=["bold"]))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "cyan"))
+            input(colored("Press Enter to return to menu...", "white"))
         elif choice == "2":
-            url = input(colored("Enter Facebook URL: ", "yellow", attrs=["bold"]))
+            url = input(colored("Enter Facebook URL: ", "white", attrs=["bold"]))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "cyan"))
+            input(colored("Press Enter to return to menu...", "white"))
         elif choice == "3":
-            url = input(colored("Enter YouTube Shorts URL: ", "yellow", attrs=["bold"]))
+            url = input(colored("Enter YouTube Shorts URL: ", "white", attrs=["bold"]))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "cyan"))
+            input(colored("Press Enter to return to menu...", "white"))
         elif choice == "4":
-            print(colored("👋 Exiting...", "red", attrs=["bold"]))
+            print(colored("👋 Exiting...", "white", attrs=["bold"]))
             sys.exit()
         else:
-            print(colored("❌ Invalid choice!", "red", attrs=["bold"]))
+            print(colored("❌ Invalid choice!", "white", attrs=["bold"]))
             time.sleep(1)
 
 # ---------- Main ----------
