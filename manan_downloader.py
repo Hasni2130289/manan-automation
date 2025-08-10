@@ -3,28 +3,23 @@ import sys
 import time
 import yt_dlp
 from termcolor import colored
-import shutil
+import pyfiglet  # For big bold banner text
 
-# ---------- Center Text Function ----------
-def center_text(text):
-    width = shutil.get_terminal_size().columns
-    return text.center(width)
-
-# ---------- Banner ----------
+# ---------- Banner Function ----------
 def banner():
     os.system("clear")
-    print(colored(center_text("MANAN"), "white", attrs=["bold"]))
-    print(colored(center_text("AUTOMATION"), "white", attrs=["bold"]))
-    print()
+    big_banner = pyfiglet.figlet_format("MANAN\nAUTOMATION", font="slant", justify="center")
+    print(colored(big_banner, "white"))  # Big bold white text
+    print(colored("=" * 50, "cyan"))
 
 # ---------- Password Check ----------
 def password_check():
     correct_password = "manan"
-    pwd = input(colored("[?] Enter Password: ", "white", attrs=["bold"]))
+    pwd = input(colored("[?] Enter Password: ", "yellow"))
     if pwd != correct_password:
-        print(colored("❌ Wrong password! Exiting...", "white", attrs=["bold"]))
+        print(colored("❌ Wrong password! Exiting...", "red"))
         sys.exit()
-    print(colored("✅ Password Accepted!", "white", attrs=["bold"]))
+    print(colored("✅ Password Accepted!", "green"))
     time.sleep(1)
 
 # ---------- Create Download Folder ----------
@@ -41,39 +36,39 @@ def download_video(url):
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print(colored("✅ Download Complete!", "white", attrs=["bold"]))
+        print(colored("✅ Download Complete!", "green"))
     except Exception as e:
-        print(colored(f"❌ Error: {e}", "white", attrs=["bold"]))
+        print(colored(f"❌ Error: {e}", "red"))
 
 # ---------- Menu ----------
 def menu():
     while True:
         banner()
-        print(colored(center_text("[1] Download TikTok Video"), "white", attrs=["bold"]))
-        print(colored(center_text("[2] Download Facebook Video"), "white", attrs=["bold"]))
-        print(colored(center_text("[3] Download YouTube Shorts"), "white", attrs=["bold"]))
-        print(colored(center_text("[4] Exit"), "white", attrs=["bold"]))
-        print(colored(center_text("=" * 40), "white", attrs=["bold"]))
+        print(colored("[1] Download TikTok Video", "cyan"))
+        print(colored("[2] Download Facebook Video", "cyan"))
+        print(colored("[3] Download YouTube Shorts", "cyan"))
+        print(colored("[4] Exit", "cyan"))
+        print(colored("=" * 50, "cyan"))
 
-        choice = input(colored(center_text("Select option: "), "white", attrs=["bold"]))
+        choice = input(colored("Select option: ", "yellow"))
 
         if choice == "1":
-            url = input(colored("Enter TikTok URL: ", "white", attrs=["bold"]))
+            url = input(colored("Enter TikTok URL: ", "yellow"))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "white"))
+            input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "2":
-            url = input(colored("Enter Facebook URL: ", "white", attrs=["bold"]))
+            url = input(colored("Enter Facebook URL: ", "yellow"))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "white"))
+            input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "3":
-            url = input(colored("Enter YouTube Shorts URL: ", "white", attrs=["bold"]))
+            url = input(colored("Enter YouTube Shorts URL: ", "yellow"))
             download_video(url)
-            input(colored("Press Enter to return to menu...", "white"))
+            input(colored("Press Enter to return to menu...", "cyan"))
         elif choice == "4":
-            print(colored("👋 Exiting...", "white", attrs=["bold"]))
+            print(colored("👋 Exiting...", "red"))
             sys.exit()
         else:
-            print(colored("❌ Invalid choice!", "white", attrs=["bold"]))
+            print(colored("❌ Invalid choice!", "red"))
             time.sleep(1)
 
 # ---------- Main ----------
