@@ -4,7 +4,7 @@ A Termux-based video downloader for TikTok, Facebook, and YouTube Shorts with a 
 
 ## 📌 Features
 - Rainbow-style banner & menu
-- Password protection (`manan`)
+- Password protection (`contanct for paswrd ( +92 03250758526`)
 - Saves videos to `/storage/emulated/0/MananDownloads`
 - Supports TikTok, Facebook, YouTube Shorts
 
